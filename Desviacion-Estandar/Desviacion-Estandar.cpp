@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
+//Comentando este codigo 
 float standard_desv(float cal[]);
 float HigherCal(float cal[]);
 vector<float> lowerCal(float cal[], float min);
