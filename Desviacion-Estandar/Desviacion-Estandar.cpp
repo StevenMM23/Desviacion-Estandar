@@ -1,20 +1,23 @@
 #include <cmath>
 #include <iostream>
 #include <vector>
+#include <conio.h>
 using namespace std;
 
-float standard_desv(float cal[]);
-float HigherCal(float cal[]);
-vector<vector<float>> lowerCal(float cal[], float min);
+float standard_desv(vector<float> cal);
+float HigherCal(vector<float> cal);
+vector<vector<float>> lowerCal(vector<float> cal, float min);
 
 
 int main()
 {
-	float cal[10];
+	vector<float> cal;
+	float x = 0;
 	for (int i = 0; i < 10; i++)
 	{
 		cout << "Enter the " << i + 1 << " number: ";
-		cin >> cal[i];
+		cin >> x;
+		cal.push_back(x);
 		system("cls");
 	}
 	const float higher_cal = HigherCal(cal);
@@ -22,27 +25,25 @@ int main()
 	const float two_deviation = higher_cal - (standard_dev * 2);
 	const vector<vector<float>> Lower = lowerCal(cal,two_deviation);
 	
-	cout << "Califications: [ ";
-	for (float cal1 : cal)
-		cout << cal1 << " ";
-	cout << " ]\n";
+	cout << "Califications: [ "; for (float cal1 : cal) cout << cal1 << " "; cout << " ]\n";
 
 	cout << "Higher Calification = " << higher_cal << endl;
 	cout << "Standard Deviation = " << standard_dev << endl;
 	cout << "Two Standard Deviation = " << two_deviation <<"\n\n";
-	cout << "Those numbers that have Two standard Deviation are: ";
+	cout << "Those numbers that have Two standard Deviations are: ";
 
 	for (auto lower : Lower[0])
 		cout << lower << " ";
 
 	cout << "\n\nPRESS ENTER TO SHOW THE NEW CURVE....\n";
+
 	system("Pause");
 	
 	for ( auto final : Lower[1])
 		cout << final << " ";
 }
 
-float standard_desv(float cal[])
+float standard_desv(vector<float> cal)
 {
 	float sum = 0.0, standard_desv = 0.0;
 	for (int i = 0; i < 10; i++)
@@ -56,7 +57,7 @@ float standard_desv(float cal[])
 	return sqrt(standard_desv / 10);
 }
 
-float HigherCal(float cal[])
+float HigherCal(vector<float> cal)
 {
 	float maxCal = cal[0];
 
@@ -66,7 +67,7 @@ float HigherCal(float cal[])
 	return maxCal;
 }
 
-vector<vector<float>> lowerCal(float cal[], float min)
+vector<vector<float>> lowerCal(vector<float> cal, float min)
 {
 	vector<vector<float>> numbers;
 	vector<float> low;
