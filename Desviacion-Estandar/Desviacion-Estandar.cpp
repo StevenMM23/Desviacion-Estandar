@@ -1,20 +1,47 @@
 #include <cmath>
 #include <iostream>
+#include <vector>
 using namespace std;
 
 float standard_desv(float cal[]);
 float HigherCal(float cal[]);
+vector<float> lowerCal(float cal[], float min);
 
 int main()
 {
 	float cal[10];
 	for (int i = 0; i < 10; i++)
 	{
-		cout << "Enter the " << i + 1 << " number:";
+		cout << "Enter the " << i + 1 << " number: ";
 		cin >> cal[i];
+		system("cls");
 	}
-	cout << "Higher Calification = " << HigherCal(cal);
-	cout << "Standard Deviation = " << standard_desv(cal);
+	float higherCal = HigherCal(cal);
+	float standardDev = standard_desv(cal);
+	float twoDeviation = higherCal - (standardDev * 2);
+	float finalCal[10];
+	vector<float> Lower = lowerCal(cal,twoDeviation);
+
+	cout << "Higher Calification = " << higherCal << endl;
+	cout << "Standard Deviation = " << standardDev << endl;
+	cout << "Two Standard Deviation = " << twoDeviation <<"\n\n";
+	cout << "Those numbers that have Two standard Deviation are: ";
+	for (float lower : Lower)
+		cout << lower << " ";
+	
+	for (int i = 0; i < 10; i++)
+		if (cal[i] < twoDeviation)
+			finalCal[i] = cal[i] + 25;
+		else
+			finalCal[i] = cal[i];
+	
+	for (auto final_cal : finalCal)
+		cout << final_cal << " ";
+	
+	cout << "PRESS ENTER TO SHOW THE NEW CURVE....";
+	system("Pause");
+	
+
 }
 
 float standard_desv(float cal[])
@@ -23,10 +50,32 @@ float standard_desv(float cal[])
 	for (int i = 0; i < 10; i++)
 		sum += cal[i];
 
-	const float average = sum / 10;
+	float average = sum / 10;
 
 	for (int i = 0; i < 10; i++)
 		standardDesv += pow(cal[i] - average, 2);
 
-	return sqrt(standardDesv);
+	return sqrt(standardDesv / 10);
+}
+
+
+float HigherCal(float cal[])
+{
+	float maxCal = cal[0];
+
+	for (int i = 0; i < 10; i++)
+		maxCal < cal[i] ? maxCal = cal[i] : maxCal;
+
+	return maxCal;
+}
+
+vector<float> lowerCal(float cal[], float min)
+{
+	vector<float> numbers;
+	for(int i = 0; i < 10; i++)
+	{
+		if (cal[i] < min)
+			numbers.push_back(cal[i]);
+	}
+	return numbers;
 }
