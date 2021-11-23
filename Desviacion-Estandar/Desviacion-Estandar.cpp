@@ -16,24 +16,17 @@ int main()
 	cout << "Higher Calification = " << HigherCal(cal);
 	cout << "Standard Deviation = " << standard_desv(cal);
 }
+
 float standard_desv(float cal[])
 {
-	float average = 0.0, sum = 0.0, standardDesv = 0.0;
+	float sum = 0.0, standardDesv = 0.0;
 	for (int i = 0; i < 10; i++)
 		sum += cal[i];
 
-	average = sum / 10;
+	const float average = sum / 10;
 
 	for (int i = 0; i < 10; i++)
 		standardDesv += pow(cal[i] - average, 2);
-	
+
 	return sqrt(standardDesv);
 }
-
-
-
-
-
-
-
-
