@@ -21,27 +21,31 @@ int main()
 	float twoDeviation = higherCal - (standardDev * 2);
 	float finalCal[10];
 	vector<float> Lower = lowerCal(cal,twoDeviation);
-
+	cout << "Califications: [ ";
+	for (float cal1 : cal)
+		cout << cal1 << " ";
+	cout << " ]\n";
 	cout << "Higher Calification = " << higherCal << endl;
 	cout << "Standard Deviation = " << standardDev << endl;
 	cout << "Two Standard Deviation = " << twoDeviation <<"\n\n";
 	cout << "Those numbers that have Two standard Deviation are: ";
+
 	for (float lower : Lower)
 		cout << lower << " ";
 	
 	for (int i = 0; i < 10; i++)
-		if (cal[i] < twoDeviation)
+		if (cal[i] < trunc(twoDeviation))
 			finalCal[i] = cal[i] + 25;
 		else
 			finalCal[i] = cal[i];
 	
-	for (auto final_cal : finalCal)
-		cout << final_cal << " ";
 	
-	cout << "PRESS ENTER TO SHOW THE NEW CURVE....";
+	
+	cout << "\n\nPRESS ENTER TO SHOW THE NEW CURVE....\n";
 	system("Pause");
 	
-
+	for (auto final_cal : finalCal)
+		cout << final_cal << " ";
 }
 
 float standard_desv(float cal[])
@@ -74,7 +78,7 @@ vector<float> lowerCal(float cal[], float min)
 	vector<float> numbers;
 	for(int i = 0; i < 10; i++)
 	{
-		if (cal[i] < min)
+		if (cal[i] < trunc(min))
 			numbers.push_back(cal[i]);
 	}
 	return numbers;

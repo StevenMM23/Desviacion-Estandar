@@ -1,3 +1,3 @@
 ﻿  Desviacion-Estandar.cpp
-C:\Users\estev\source\repos\Desviacion-Estandar\Desviacion-Estandar\Desviacion-Estandar.cpp(56,22): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\estev\source\repos\Desviacion-Estandar\Desviacion-Estandar\Desviacion-Estandar.cpp(60,22): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
   Desviacion-Estandar.vcxproj -> C:\Users\estev\source\repos\Desviacion-Estandar\x64\Debug\Desviacion-Estandar.exe
